@@ -39,8 +39,12 @@ type UniqPool[T comparable] struct {
 	stopped  int32
 }
 
-// NewUniqPool creates a new UniqPool.
-func NewUniqPool[T comparable](inboundQueueCapacity, poolWorkersCount, poolCapacity int, interval time.Duration) *UniqPool[T] {
+// New creates a new UniqPool.
+func New[T comparable](inboundQueueCapacity, poolWorkersCount, poolCapacity int, interval time.Duration) *UniqPool[T] {
+	if inboundQueueCapacity <= 0 || poolWorkersCount <= 0 || poolCapacity <= 0 || interval <= 0 {
+		panic("invalid parameters")
+	}
+
 	p := &UniqPool[T]{
 		pool:        pond.New(poolWorkersCount, poolCapacity),
 		interval:    interval,
