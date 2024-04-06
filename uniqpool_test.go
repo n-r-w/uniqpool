@@ -11,7 +11,7 @@ import (
 // TestUniq checks that tasks with the same identifier are executed only once.
 func TestUniq(t *testing.T) {
 	// Create a new UniqPool instance
-	pool := NewUniqPool[string](10, 2, 10, time.Millisecond*100)
+	pool := New[string](10, 2, 10, time.Millisecond*100)
 
 	var processed int32
 
@@ -49,7 +49,7 @@ func TestUniq(t *testing.T) {
 // TestInboundQueueOverflow checks that the inbound queue overflow and waiting for available space works correctly.
 func TestInboundQueueOverflow(t *testing.T) {
 	// Create a new UniqPool instance
-	pool := NewUniqPool[string](2, 2, 10, time.Millisecond*100)
+	pool := New[string](2, 2, 10, time.Millisecond*100)
 
 	var (
 		processed int32

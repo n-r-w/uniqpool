@@ -38,7 +38,7 @@ func main() {
     // 5 - workers count
     // 100 - worker pool capacity
     // time.Second - interval in milliseconds after which incoming tasks will be sent to the worker pool
-    p := uniqpool.NewUniqPool[string](10, 5, 100, time.Second)
+    p := uniqpool.New[string](10, 5, 100, time.Second)
 
     p.Submit("task1", func() {
         fmt.Println("will be executed")
